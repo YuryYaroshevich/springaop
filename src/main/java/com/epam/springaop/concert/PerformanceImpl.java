@@ -7,7 +7,7 @@ public class PerformanceImpl implements Performance {
 
 	@Override
 	public void perform() {
-		throw new RuntimeException("fuck");
+		System.out.println("batman is here...");//throw new RuntimeException("fuck");
 	}
 
 }
