@@ -5,9 +5,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
-@Aspect
+//@Aspect
 public class Audience {
-	@Pointcut("execution(** com.epam.springaop.concert.Performance.perform(..))")
+	//@Pointcut("execution(** com.epam.springaop.concert.Performance.perform(..))")
 	public void performance() {}
 	
 	//@Before("performance()")

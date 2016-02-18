@@ -4,7 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.ImportResource;
 
 import com.epam.springaop.concert.Audience;
 import com.epam.springaop.concert.BlankDisc;
@@ -14,7 +14,8 @@ import com.epam.springaop.concert.Performance;
 import com.epam.springaop.concert.TrackCounter;
 
 @Configuration
-@EnableAspectJAutoProxy
+@ImportResource("classpath:spring-aop.xml")
+//@EnableAspectJAutoProxy
 @ComponentScan
 public class App {
 	@Bean
