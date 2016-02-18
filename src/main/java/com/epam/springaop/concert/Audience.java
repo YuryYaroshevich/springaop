@@ -1,9 +1,6 @@
 package com.epam.springaop.concert;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 //@Aspect
 public class Audience {
@@ -30,7 +27,7 @@ public class Audience {
 		System.out.println("Demanding a refund");
 	}
 	
-	@Around("performance()")
+	//@Around("performance()")
 	public void watchPerformance(ProceedingJoinPoint joinPoint) {
 	    try {
 	       silenceCellPhones();
