@@ -15,8 +15,8 @@ import com.epam.springaop.concert.TrackCounter;
 
 @Configuration
 @ImportResource("classpath:spring-aop.xml")
-//@EnableAspectJAutoProxy
 @ComponentScan
+//@EnableAspectJAutoProxy
 public class App {
 	@Bean
 	Audience audience() {
@@ -26,7 +26,7 @@ public class App {
 	TrackCounter trackCounter() {
 	    return new TrackCounter();
 	}	
-	@Bean
+	//@Bean
 	EncoreableIntroducer encoreableIntroducer() {
 	    return new EncoreableIntroducer();
 	}
@@ -36,7 +36,7 @@ public class App {
 		
 		Performance performance = ctx.getBean(Performance.class);
 		performance.perform();
-		Encoreable encore = (Encoreable) performance;
+		Encoreable encore = ctx.getBean(Encoreable.class);// it is a performance bean
 		encore.performEncore();
 		
 		BlankDisc disc = ctx.getBean(BlankDisc.class);

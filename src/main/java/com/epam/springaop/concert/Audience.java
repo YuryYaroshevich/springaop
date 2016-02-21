@@ -33,6 +33,7 @@ public class Audience {
 	       silenceCellPhones();
 	       takeSeates();
 	       joinPoint.proceed();
+	       applause();
 	    } catch (Throwable e) {
 	        demandRefund();
 	        System.out.println(e);

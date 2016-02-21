@@ -9,23 +9,43 @@
  		http://www.springframework.org/schema/aop
  		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
  		
+    	<aop:aspectj-autoproxy />
+    	
  		<bean id="audience" class="com.epam.springaop.concert.Audience" />
+ 		<bean id="trackCounter" class="com.epam.springaop.concert.TrackCounter" />
+ 		<bean id="critic" class="com.epam.springaop.concert.CriticAspect">
+ 			<property name="criticEngine" ref="criticismEngine" />
+ 		</bean>
  		
  		<aop:config>
  			<aop:aspect ref="audience">
- 				<aop:before
- 					pointcut="execution(** com.epam.springaop.concert.Performance.perform(..))"
+ 			    <aop:pointcut id="performance" 
+ 			        expression="execution(** com.epam.springaop.concert.Performance.perform(..))" />
+ 				<!--<aop:before
+ 					pointcut-ref="performance"
  					method="silenceCellPhones" />
 				<aop:before
-					pointcut="execution(** com.epam.springaop.concert.Performance.perform(..))"
+					pointcut-ref="performance"
 					method="takeSeates" />
 				<aop:after-returning
-					pointcut="execution(** com.epam.springaop.concert.Performance.perform(..))"
+					pointcut-ref="performance"
 					method="applause" />
 				<aop:after-throwing
-					pointcut="execution(** com.epam.springaop.concert.Performance.perform(..))"
-					method="demandRefund"/>
+					pointcut-ref="performance"
+					method="demandRefund"/> -->
+				<aop:around pointcut-ref="performance" method="watchPerformance" />
+				<aop:declare-parents 
+				    types-matching="com.epam.springaop.concert.Performance+"
+				    implement-interface="com.epam.springaop.concert.Encoreable"
+				    default-impl="com.epam.springaop.concert.DefaultEncoreableImpl" />
  			</aop:aspect> 		
+ 			<aop:aspect ref="trackCounter">
+ 			    <aop:pointcut id="countTracks"
+ 			        expression="execution(** com.epam.springaop.concert.BlankDisc.play(String)) and args(track)" />
+ 			    <aop:before 
+ 			        pointcut-ref="countTracks"
+ 			        method="count" />			    
+ 			</aop:aspect>
  		</aop:config>
 
 </beans>

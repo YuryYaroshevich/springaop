@@ -3,18 +3,14 @@ package com.epam.springaop.concert;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
-
-@Aspect
+//@Aspect
 public class TrackCounter {
     Map<String, Integer> trackTimes = new HashMap<>();
     
-    @Pointcut("execution(** com.epam.springaop.concert.BlankDisc.play(String)) && args(fuck)")
+    //@Pointcut("execution(** com.epam.springaop.concert.BlankDisc.play(String)) && args(fuck)")
     public void trackPlayed(String fuck) {}
     
-    @Before("trackPlayed(track)")
+    //@Before("trackPlayed(track)")
     public void count(String track) {
        if (trackTimes.containsKey(track)) {
            trackTimes.put(track, 1 + trackTimes.get(track));
