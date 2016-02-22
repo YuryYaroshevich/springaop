@@ -5,7 +5,7 @@ public aspect CriticAspect {
     
     pointcut performance() : execution(* perform(..));
     
-    afterReturning() : performance() {
+    after() returning() : performance() {
         System.out.println(criticismEngine.getCriticism());
     }
     
